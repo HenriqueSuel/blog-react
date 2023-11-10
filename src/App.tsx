@@ -1,5 +1,7 @@
+import React from 'react';
 import './App.css';
-import Henrique from './components/navbar';
+import { Hero } from './components/Hero';
+import { NavBar } from './components/Navbar';
 
 
 function App() {
@@ -9,11 +11,10 @@ function App() {
   }
 
   return (
-    <div className="App">
-
-      <Henrique />
-      <button onClick={handleClick}>Teste</button>
-    </div>
+    <React.Fragment>
+      <NavBar />
+      <Hero />
+    </React.Fragment>
   );
 }
 
