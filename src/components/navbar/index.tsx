@@ -1,5 +1,7 @@
-const NavBar = () => {
+import { Loading } from "../Loading";
 
+const NavBar = () => {
+    const isLoading = false;
 
     return (
         <div className="bg-sky-500 p-5 shadow-lg flex justify-between">
@@ -10,9 +12,10 @@ const NavBar = () => {
                 <li>Noticias</li>
                 <li>login</li>
             </ul>
+            <Loading  loading={isLoading} nameScreen="NavBar" />
         </div>
     )
 }
 
 
-export default NavBar;
+export { NavBar };
