@@ -12,7 +12,7 @@ const Input = ({ setValue }: Props) => {
     }
 
     return (
-        <input className="px-2 py-1 border-2 border-blue-300" type="text" onChange={handleChange} />
+        <input className="px-2 py-1 border-2 border-blue-300 w-full" type="text" onChange={handleChange} />
     )
 }
 

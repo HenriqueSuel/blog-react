@@ -1,76 +1,56 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import './App.css';
-import { Hero } from './components/Hero';
 import { NavBar } from './components/Navbar';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
 import { Loading } from './components/Loading';
-
-
-interface IProducts {
-  id: string;
-  name: string;
-  description: string;
-  stock: number;
-}
+import { List } from './components/List';
+import { IRepo } from './interface/respo.interface';
 
 function App() {
 
   const [repoName, setRepoName] = useState<string>('');
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [listRepo, setListRepo] = useState<string[]>();
+  const [listRepo, setListRepo] = useState<IRepo[]>([]);
 
 
-  const getListRepo = (): Promise<IProducts[]> => {
+  const getListRepo = (): Promise<IRepo[]> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve([
           {
-            description: 'asdadsa',
-            id: '1',
-            name: 'adasdas',
-            stock: 2
+            full_name: 'Henrique Suel',
+            id: 1,
+            owner: {
+              avatar_url: 'https://avatars.githubusercontent.com/u/22986830?v=4'
+            }
           },
           {
-            description: 'asdadsa',
-            id: '2',
-            name: 'adasdas',
-            stock: 3
+            full_name: 'Suel Henrique',
+            id: 2,
+            owner: {
+              avatar_url: 'https://avatars.githubusercontent.com/u/60116?v=4'
+            }
           },
           {
-            description: 'asdadsa',
-            id: '3',
-            name: 'adasdas',
-            stock: 20
+            full_name: 'Suel',
+            id: 3,
+            owner: {
+              avatar_url: 'https://avatars.githubusercontent.com/u/60116?v=4'
+            }
           },
         ])
-        // reject({
-        //   message: 'Ops tivemos um erro! '
-        // });
-      }, 5000)
-      /*  */
+      }, 3000)
     })
   }
-
-  useEffect(() => {
-    setIsLoading(true);
-    getListRepo().then(resp => {
-      console.log('then', resp);
-    }).catch((erro) => {
-      console.log('Deu ruim', erro.message);
-    }).finally(() => {
-      setIsLoading(false);
-    })
-  }, [])
 
   useEffect(() => {
     setIsLoading(true);
     const onMount = async () => {
       try {
         const resp = await getListRepo();
-
-        console.log('async await', resp);
+        setListRepo(resp);
       } catch (error) {
         console.log('Deu ruim', error);
       } finally {
@@ -80,14 +60,35 @@ function App() {
     onMount();
   }, [])
 
+  const handleClick = () => {
+    setListRepo((previous) => [...previous, {
+      full_name: repoName,
+      id: previous[previous.length - 1].id + 1,
+      owner: {
+        avatar_url: 'https://avatars.githubusercontent.com/u/22986830?v=4'
+      }
+    }])
+  }
+
 
   return (
-    <React.Fragment>
-      <Loading loading={isLoading} nameScreen='home' />
+    <>
       <NavBar />
-      <Hero />
-      <Input setValue={setRepoName} />
-    </React.Fragment>
+      <Loading loading={isLoading} nameScreen='home' />
+      <div className="container mx-auto">
+        <div className='flex mt-5'>
+          <Input setValue={setRepoName} />
+          <Button title='Buscar' handleClick={handleClick} />
+        </div>
+        {listRepo.map((item, index) => (
+          // <React.Fragment key={item.id}>
+          <List key={item.id} fullName={item.full_name} id={item.id} url={item.owner.avatar_url} />
+          // </React.Fragment>
+        ))}
+
+
+      </div>
+    </>
   );
 }
 
