@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import { Loading } from "../Loading";
 
 const NavBar = () => {
@@ -10,9 +11,8 @@ const NavBar = () => {
             <h1>Blog Henrique</h1>
 
             <ul className="flex gap-5">
-                <li>home</li>
-                <li>Noticias</li>
-                <li>login</li>
+                <Link to='/'>Home</Link>
+                <Link to='/repo/henriqueSuel'>Repo</Link>
             </ul>
             <Loading loading={isLoading} nameScreen="NavBar" />
 
