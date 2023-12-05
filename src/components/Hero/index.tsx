@@ -7,7 +7,7 @@ const Hero = () => {
     return (
         <div>
             <h1>Henrique</h1>
-            <Loading loading={isLoading} nameScreen="Hero" />
+     {/*        <Loading loading={isLoading} nameScreen="Hero" /> */}
         </div>
 
     )

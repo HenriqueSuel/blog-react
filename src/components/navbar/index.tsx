@@ -14,7 +14,7 @@ const NavBar = () => {
                 <Link to='/'>Home</Link>
                 <Link to='/repo/henriqueSuel'>Repo</Link>
             </ul>
-            <Loading loading={isLoading} nameScreen="NavBar" />
+           {/*  <Loading loading={isLoading} nameScreen="NavBar" /> */}
 
 
 

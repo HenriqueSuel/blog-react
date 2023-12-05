@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getApi } from "../../services/api.services";
 import { IRepo } from "../../interface/repo.interface";
+import { useLoading } from "../../context/loading.context";
 
 const Repo = () => {
+    const { setIsLoading } = useLoading();
     const [listRepo, setListRepo] = useState<IRepo[]>([])
     const { username } = useParams();
 
 
     useEffect(() => {
         const onMount = async () => {
+            setIsLoading(true);
             const resp = await getApi(`https://api.github.com/users/${username}/repos`)
             setListRepo(resp.data);
+            setIsLoading(false);
         }
         onMount();
     }, [])
