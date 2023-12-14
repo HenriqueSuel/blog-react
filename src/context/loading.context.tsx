@@ -18,7 +18,7 @@ interface IProvider {
 }
 
 const LoadingProvider = ({ children }: IProvider) => {
-    const [teste, setTeste] = useState<boolean>(false);
+    const [teste, setTeste] = useState<boolean>(true);
     return (
         <LoadingContext.Provider
             value={{

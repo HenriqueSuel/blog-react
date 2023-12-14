@@ -14,7 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <LoadingProvider>
     <GithubProvider>
-      <Loading />
+      <Loading  name='texto'/>
       <Routers />
     </GithubProvider>
   </LoadingProvider>

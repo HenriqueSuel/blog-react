@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
     username: string;
 }
 
-const List = ({ fullName, url, username }: Props) => {
+const ListComponent = ({ fullName, url, username }: Props) => {
 
     return (
         <Link to={`/repo/${username}`} >
@@ -21,4 +22,9 @@ const List = ({ fullName, url, username }: Props) => {
     )
 }
 
+const List = memo(ListComponent);
+
 export { List }
+
+
+// export default memo(ListComponent)

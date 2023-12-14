@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home } from '../pages/Home';
 import { Repo } from '../pages/Repo';
 import { NavBar } from '../components/Navbar';
+import { Teste } from '../pages/Teste';
 
 const Routers = () => {
     return (
@@ -10,6 +11,7 @@ const Routers = () => {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/repo/:username' element={<Repo />} />
+                <Route path='/teste' element={<Teste />} />
             </Routes>
         </BrowserRouter>
     )

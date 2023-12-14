@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 
-const getApi = (url: string) => {
+const getApi = <T>(url: string): Promise<AxiosResponse<T>> => {
     return axios.get(url)
 }
 

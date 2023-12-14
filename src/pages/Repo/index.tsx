@@ -13,7 +13,7 @@ const Repo = () => {
     useEffect(() => {
         const onMount = async () => {
             setIsLoading(true);
-            const resp = await getApi(`https://api.github.com/users/${username}/repos`)
+            const resp = await getApi<IRepo[]>(`https://api.github.com/users/${username}/repos`)
             setListRepo(resp.data);
             setIsLoading(false);
         }

@@ -29,7 +29,7 @@ const GithubProvider = ({ children }: IProvider) => {
 
     const handleGetUser = async (username: string) => {
         setIsLoading(true)
-        const resp = await getApi(`https://api.github.com/users/${username}`)
+        const resp = await getApi<IUser>(`https://api.github.com/users/${username}`)
 
         setListUser((previous) => [...previous, resp.data])
         localStorage.setItem('user', JSON.stringify([...listUser, resp.data]));
